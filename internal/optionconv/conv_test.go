@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	prompt "github.com/c-bata/go-prompt"
-	"github.com/c-bata/kube-prompt/internal/optionconv"
+	"github.com/anoop2811/kube-prompt/internal/optionconv"
 )
 
 func ExampleGetOptionsFromHelpText() {

@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/c-bata/kube-prompt/internal/debug"
+	"github.com/anoop2811/kube-prompt/internal/debug"
 )
 
 func Executor(s string) {
@@ -20,7 +20,7 @@ func Executor(s string) {
 		return
 	}
 
-	cmd := exec.Command("/bin/sh", "-c", "kubectl "+s)
+	cmd := exec.Command("kubectl " + s)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -38,7 +38,7 @@ func ExecuteAndGetResult(s string) string {
 	}
 
 	out := &bytes.Buffer{}
-	cmd := exec.Command("/bin/sh", "-c", "kubectl "+s)
+	cmd := exec.Command("kubectl " + s)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = out
 	if err := cmd.Run(); err != nil {

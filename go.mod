@@ -1,4 +1,4 @@
-module github.com/c-bata/kube-prompt
+module github.com/anoop2811/kube-prompt
 
 require (
 	github.com/c-bata/go-prompt v0.0.0-20181209194345-6d81ea6f2610

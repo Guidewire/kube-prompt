@@ -19,9 +19,9 @@ func Executor(s string) {
 		os.Exit(0)
 		return
 	}
-
-	cmd := exec.Command("kubectl " + s)
+	cmd := exec.Command("/bin/sh", "-c", "kubectl "+s)
 	cmd.Stdin = os.Stdin
+	cmd.Env = os.Environ()
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
@@ -38,8 +38,9 @@ func ExecuteAndGetResult(s string) string {
 	}
 
 	out := &bytes.Buffer{}
-	cmd := exec.Command("kubectl " + s)
+	cmd := exec.Command("/bin/sh", "-c", "kubectl "+s)
 	cmd.Stdin = os.Stdin
+	cmd.Env = os.Environ()
 	cmd.Stdout = out
 	if err := cmd.Run(); err != nil {
 		debug.Log(err.Error())

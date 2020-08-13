@@ -13,11 +13,11 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 )
 
-func NewCompleter() (*Completer, error) {
+func NewCompleter(clusterName string) (*Completer, error) {
 	loadingRules := clientcmd.NewDefaultClientConfigLoadingRules()
 	loader := clientcmd.NewNonInteractiveDeferredLoadingClientConfig(
 		loadingRules,
-		&clientcmd.ConfigOverrides{},
+		&clientcmd.ConfigOverrides{CurrentContext: clusterName},
 	)
 
 	config, err := loader.ClientConfig()

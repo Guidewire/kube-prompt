@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/anoop2811/kube-prompt/internal/debug"
+	"github.com/guidewire/kube-prompt/internal/debug"
 )
 
 func Executor(s string) {

@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/anoop2811/kube-prompt/internal/optionconv"
+	"github.com/guidewire/kube-prompt/internal/optionconv"
 	"github.com/k0kubun/pp"
 )
 

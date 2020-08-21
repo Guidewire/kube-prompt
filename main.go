@@ -20,7 +20,7 @@ var (
 )
 
 func main() {
-	c, err := kube.NewCompleter()
+	c, err := kube.NewCompleter("")
 	if err != nil {
 		fmt.Println("error", err)
 		os.Exit(1)

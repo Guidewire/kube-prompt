@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"runtime"
 	"strings"
 
 	"github.com/guidewire/kube-prompt/internal/debug"
@@ -19,7 +20,14 @@ func Executor(s string) {
 		os.Exit(0)
 		return
 	}
-	cmd := exec.Command("/bin/sh", "-c", "kubectl "+s)
+	var cmd *exec.Cmd
+	if runtime.GOOS == "darwin" || runtime.GOOS == "linux" {
+		cmd = exec.Command("/bin/sh", "-c", "kubectl "+s)
+	} else if runtime.GOOS == "windows" {
+		cmd = exec.Command("cmd", "/c", "kubectl "+s)
+	} else {
+		fmt.Println("Unsupported operating system/architecture")
+	}
 	cmd.Stdin = os.Stdin
 	cmd.Env = os.Environ()
 	cmd.Stdout = os.Stdout
@@ -38,7 +46,15 @@ func ExecuteAndGetResult(s string) string {
 	}
 
 	out := &bytes.Buffer{}
-	cmd := exec.Command("/bin/sh", "-c", "kubectl "+s)
+
+	var cmd *exec.Cmd
+	if runtime.GOOS == "darwin" || runtime.GOOS == "linux" {
+		cmd = exec.Command("/bin/sh", "-c", "kubectl "+s)
+	} else if runtime.GOOS == "windows" {
+		cmd = exec.Command("cmd", "/c", "kubectl "+s)
+	} else {
+		fmt.Println("Unsupported operating system/architecture")
+	}
 	cmd.Stdin = os.Stdin
 	cmd.Env = os.Environ()
 	cmd.Stdout = out
